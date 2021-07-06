@@ -1,0 +1,41 @@
+#include <iostream>
+
+using namespace std;
+
+typedef unsigned long T;
+
+T pq(T a, T b, T p) {
+    T res = 1;
+    while (b) {
+        if (b & 1) {
+            res = (a * res) % p;
+        }
+        b = b >> 1;
+        a = (a * a) % p;
+    }
+    res %= p;
+    return res;
+}
+
+void game() {
+    T p, count;
+    cin >> p;
+    cin >> count;
+    T res = 0;
+    for (int i = 0; i < count; i++) {
+        T a, b;
+        cin >> a >> b;
+        T t = pq(a, b, p);
+        res = (res + t) % p;
+    }
+    cout << res << endl;
+}
+
+int main() {
+    int count = 0;
+    cin >> count;
+    while (count--) {
+        game();
+    }
+    return 0;
+}
