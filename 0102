@@ -1,0 +1,21 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    unsigned long a, b, p;
+    cin >> a;
+    cin >> b;
+    cin >> p;
+    unsigned long res = 0;
+    while (b) {
+        if (b & 1) {
+            res = (a + res) % p;
+        }
+        b = b >> 1;
+        a = (a << 1) % p;
+    }
+    res %= p;
+    cout << res;
+    return 0;
+}
